@@ -1,7 +1,7 @@
 package com.company;
 
 public class Menu {
-  public Food[] listItems() {
+  public static Food[] listItems() {
     final Food[] listAll = new Food[4];
     listAll[0] = new Food(1, "黄焖鸡", 18);
     listAll[1] = new Food(2, "肉夹馍", 6);
@@ -10,7 +10,7 @@ public class Menu {
     return listAll;
   }
 
-  public Food[] listPromotedItems() {
+  public static Food[] listPromotedItems() {
     final Food[] promoted = new Food[2];
     promoted[0] = new Food(1, "黄焖鸡", 18);
     promoted[1] = new Food(3, "凉皮", 8);

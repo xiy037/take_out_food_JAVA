@@ -18,11 +18,27 @@ public class BestCharge {
       return order;
     }
 
+    static int calculatePrice(ArrayList<Food> arr) {
+      Food[] itemList = Menu.listItems();
+      int price = 0;
+      for (Food x : arr) {
+        for (int i = 0; i < itemList.length; i++) {
+          if (x.foodName.equals(itemList[i].foodName)) {
+            price += x.count * itemList[i].price;
+          }
+        }
+      }
+      return price;
+    }
+
     public static void main(String[] args) {
       ArrayList<Food> order = userInput();
       for (Food x : order) {
         System.out.println(x.foodName + "*" + x.count);
       }
+      int price = calculatePrice(order);
+      System.out.println(price);
+
     }
 }
 
