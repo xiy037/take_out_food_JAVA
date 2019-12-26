@@ -4,7 +4,7 @@ import java.util.*;
 public class BestCharge {
     static ArrayList<Food> userInput() {
       Scanner input = new Scanner(System.in);
-      ArrayList<Food> order = new ArrayList<Food>();
+      ArrayList<Food> order = new ArrayList<>();
       do {
         System.out.println("What is your dish?");
         String foodName = input.next();
@@ -31,6 +31,27 @@ public class BestCharge {
       return price;
     }
 
+    static int getDiscountedPrice1(int price) {
+      int discountedPrice = price;
+      if (price >= 30) {
+        discountedPrice = price - (Math.floorDiv(price, 30) * 6);
+      }
+      return discountedPrice;
+    }
+
+    static int getDiscountedPrice2(ArrayList<Food> order, int price) {
+      int discountedPrice = price;
+      Food[] discountedList = Menu.listPromotedItems();
+      for (Food x: order) {
+        for (int i = 0; i < discountedList.length; i++) {
+          if (x.foodName.equals(discountedList[i].foodName)) {
+            discountedPrice = price - discountedList[i].price / 2;
+          }
+        }
+      }
+      return discountedPrice;
+    }
+
     public static void main(String[] args) {
       ArrayList<Food> order = userInput();
       for (Food x : order) {
@@ -38,8 +59,11 @@ public class BestCharge {
       }
       int price = calculatePrice(order);
       System.out.println(price);
-
+      int discountedPrice1 = getDiscountedPrice1(price);
+      int discountedPrice2 = getDiscountedPrice2(order, price);
     }
+
+
 }
 
 //method listAllItems 返回菜品列表；
