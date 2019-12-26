@@ -45,7 +45,7 @@ public class BestCharge {
       for (Food x: order) {
         for (int i = 0; i < discountedList.length; i++) {
           if (x.foodName.equals(discountedList[i].foodName)) {
-            discountedPrice = price - discountedList[i].price / 2;
+            discountedPrice = price - (discountedList[i].price / 2) * x.count;
           }
         }
       }
@@ -58,9 +58,22 @@ public class BestCharge {
         System.out.println(x.foodName + "*" + x.count);
       }
       int price = calculatePrice(order);
-      System.out.println(price);
+      System.out.println("折扣前价格：" + price + "元");
       int discountedPrice1 = getDiscountedPrice1(price);
       int discountedPrice2 = getDiscountedPrice2(order, price);
+      int bestCharge = price;
+      String bestPromotion = "无优惠";
+      if (discountedPrice1 < price || discountedPrice2 < price) {
+        if (discountedPrice1 <= discountedPrice2) {
+          bestCharge = discountedPrice1;
+          bestPromotion = "满30减6";
+        } else {
+          bestCharge = discountedPrice2;
+          bestPromotion = "指定商品半价：黄焖鸡，凉皮";
+        }
+      }
+      String receipt = "总价：" + bestCharge + "元，优惠方式：" + bestPromotion;
+      System.out.println(receipt);
     }
 
 

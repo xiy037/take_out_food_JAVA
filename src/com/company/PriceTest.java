@@ -17,9 +17,9 @@ public class PriceTest {
     int price = 60;
     ArrayList<Food> order = new ArrayList<>();
     String foodName = "黄焖鸡";
-    int count = 1;
+    int count = 2;
     Food dish = new Food(foodName, count);
     order.add(dish);
-    assertEquals(51, BestCharge.getDiscountedPrice2(order, price));
+    assertEquals(42, BestCharge.getDiscountedPrice2(order, price));
   }
 }
